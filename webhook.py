@@ -12,7 +12,7 @@ def process(chat_id):
     for commit in reversed(data["commits"]):
         bot.sendMessage(
             chat_id=chat_id, 
-            text="<b>{0}</b> hat gerade <a href='{1}'>{2}</a> commited:\n<pre>{3}</pre>".format(commit["author"]["name"], commit["url"], commit["id"], commit["message"]), parse_mode="html")
+            text="<b>{0}</b> hat gerade <a href='{1}'>{2}</a> commited:\n<pre>{3}</pre>".format(commit["author"]["name"], commit["url"], commit["id"], commit["message"]),
+            parse_mode="html",
+            disable_web_page_preview=True)
     return ""
-
-
