@@ -50,5 +50,6 @@ def process(chat_id):
 
 @app.route("/mail/<chat_id>", methods=["POST"])
 def process_mailgun(chat_id):
-    data = json.loads(request.data.decode())
+    data = request.form
     bot.sendMessage(chat_id=chat_id, text=data["stripped-text"], disable_web_page_preview=True)
+    return ""
