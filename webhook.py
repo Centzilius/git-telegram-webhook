@@ -3,6 +3,7 @@ import hmac
 import html
 import json
 import os
+from urllib import request
 
 import telegram
 from flask import *
@@ -46,3 +47,8 @@ def process(chat_id):
 
     bot.sendMessage(chat_id=chat_id, text=text, parse_mode=telegram.ParseMode.HTML, disable_web_page_preview=True)
     return ""
+
+@app.route("/mail/<chat_id>", method=["POST"])
+def process_mailgun(chat_id):
+    data = json.loads(request.data.decode())
+    bot.sendMessage(chat_id=chat_id, text=data["stripped-text"], disable_web_page_preview=True)
